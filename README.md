@@ -6,7 +6,7 @@ Requires string.h to run the readValue function
 
 <br>
 <h4> Compiling </h4>
-Run <strong>make</strong> with root permission to compile and install the GPIO library. To build the Example Code, run <strong> make examples </strong>. <strong> make clean </strong> uninstalls the library.
+Run <strong>make</strong> with root permission to compile and install the GPIO library. To build the example code, run <strong> make examples.</strong> Run <strong> make clean </strong> to uninstall the library and remove the compiled example code.
 
 <br>
 <h4>Code Reference</h4>
