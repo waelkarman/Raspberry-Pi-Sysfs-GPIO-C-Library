@@ -7,7 +7,12 @@ all: GPIO.cpp
 	rm -f GPIO.o
 	rm -f libGPIO.so
 
+examples: all Examples/Read.cpp Examples/Write.cpp
+	g++ Examples/Read.cpp -o Examples/Read -lGPIO
+	g++ Examples/Write.cpp -o Examples/Write -lGPIO
+
 clean:
 	rm -f /usr/include/GPIO.h
 	rm -f /usr/lib/libGPIO.so
-
+	rm -f Examples/Read
+	rm -f Examples/Write
