@@ -1,12 +1,12 @@
 # Raspberry-Pi-Sysfs-GPIO-C-Library
 <h3>A C/C++ library to setup, read and write the GPIO pins on the Raspberry Pi through the Sysfs interface</h3>
-<br>
+
 <h4> Dependencies </h4>
 Requires string.h to run the readValue function
 
 <br>
 <h4> Compiling </h4>
-Run <strong>make</strong> with root permission to compile the and install library.
+Run <strong>make</strong> to compile and install the GPIO library. To build the example code, run <strong> make examples.</strong> Run <strong> make clean </strong> to uninstall the library and remove the compiled example code. Note: the make commands need to be run with root permissions. 
 
 <br>
 <h4>Code Reference</h4>
@@ -29,6 +29,7 @@ Run <strong>make</strong> with root permission to compile the and install librar
 
 <br>
 <h4> Example Code </h4>
+Both the uncompiled and compiled code will be in the Examples folder (run <strong> make examples </strong> to compile the examples).
 <h5> Set GPIO pin number 18 as an output with the value HIGH. </h5>
 
 ```
