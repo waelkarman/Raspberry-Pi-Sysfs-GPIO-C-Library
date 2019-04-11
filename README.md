@@ -41,3 +41,6 @@ Run <strong>make</strong> to compile the library.
 
 ```
 
+<h4> License </h4>
+<br> All code and files are licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-4.0). Copyright (c) 2019, Alex Mous
+
