@@ -6,7 +6,7 @@ Requires string.h to run the readValue function
 
 <br>
 <h4> Compiling </h4>
-Run <strong>make</strong> to compile the library.
+Run <strong>make</strong> with root permission to compile the and install library.
 
 <br>
 <h4>Code Reference</h4>
