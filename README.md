@@ -1,16 +1,16 @@
 # Raspberry-Pi-Sysfs-GPIO-C-Library
 <h3>A C/C++ library to setup, read and write the GPIO pins on the Raspberry Pi through the Sysfs interface</h3>
 
-<h4> Dependencies </h4>
+<h3> Dependencies </h3>
 Requires string.h to run the readValue function
 
 <br>
-<h4> Compiling </h4>
+<h3> Compiling </h3>
 Run <strong>make</strong> to compile and install the GPIO library. To build the example code, run <strong> make examples.</strong> Run <strong> make clean </strong> to uninstall the library and remove the compiled example code. Note: the make commands need to be run with root permissions. 
 
 <br>
-<h4>Code Reference</h4>
-<br> &ensp;&ensp;&ensp;&ensp; Functions
+<h3>Code Reference</h3>
+<br> &ensp;&ensp;&ensp;&ensp; <h4> Functions </h4>
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; setupPin(int create)
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; Runs setup for the pin that wasspecified when creating the GPIO object
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; <strong>create</strong> should be either 1 to enable/create the pin and 0 to disable/free the pin
@@ -28,18 +28,100 @@ Run <strong>make</strong> to compile and install the GPIO library. To build the 
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; <strong>level</strong> should either 1 for HIGH voltage level or 0 for LOW voltage level
 
 <br>
-<h4> Example Code </h4>
+<br>
+<h3> Example Code </h3>
 Both the uncompiled and compiled code will be in the Examples folder (run <strong> make examples </strong> to compile the examples).
-<h5> Set GPIO pin number 18 as an output with the value HIGH. </h5>
+
+```
+//Copyright (c) 2019, Alex Mous
+//Licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-4.0)
+
+//Example code for writing a GPIO pin
+//Set GPIO pin number GPIO_PIN as an output with the value HIGH, wait 5 seconds, and write the value LOW and disable the pin
+//Change #define GPIO_PIN to a different number to use a different GPIO pin
+
+#include "GPIO.h"
+#include <iostream>
+#include <string.h>
+
+#define GPIO_PIN "18" //GPIO pin (BCM number) used as an output
+
+int main() {
+	std::cout << "GPIO library example: Writing a GPIO pin\n";
+
+	int status; //Create a status variable
+
+	GPIO gpio_test(GPIO_PIN); //Create a GPIO object
+
+	status = gpio_test.setupPin(1); //Create pin
+	if (status != 0) return 1; //Return error code
+
+	status = gpio_test.setDirection(1); //Set pin direction
+	if (status != 0) return 1; //Return error code
+
+	std::cout << "Wrote GPIO pin " << GPIO_PIN << " HIGH\n";
+	status = gpio_test.writeValue(1); //Set pin value
+	if (status != 0) return 1; //Return error code
+
+	sleep(5); //Wait five seconds
+
+	std::cout << "Wrote GPIO pin " << GPIO_PIN << " LOW\n";
+	status = gpio_test.writeValue(0); //Set pin value
+	if (status != 0) return 1; //Return error code
+
+	status = gpio_test.setupPin(0); //Create pin
+	if (status != 0) return 1; //Return error code
+
+	return 0; //Return default code
+}
 
 ```
 
-```
-
-<h5> Set GPIO pin number 18 as an input and read the current value. </h5>
 
 ```
+//Copyright (c) 2019, Alex Mous
+//Licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-4.0)
 
+//Example code for reading a GPIO pin
+//Set GPIO pin number GPIO_PIN as an input and read the current value
+//Change #define GPIO_PIN to a different number to use a different GPIO pin
+
+#include "GPIO.h"
+#include <iostream>
+#include <string>
+
+#define GPIO_PIN "18" //GPIO pin (BCM number) used as an input
+
+int main() {
+	std::cout << "GPIO library example: Reading a GPIO pin\n";
+
+	int status; //Create a status variable
+
+	GPIO gpio_test(GPIO_PIN); //Create a GPIO object
+
+	status = gpio_test.setupPin(1); //Create pin
+	if (status != 0) return 1; //Return error code
+
+	status = gpio_test.setDirection(0); //Set pin direction
+	if (status != 0) return 1; //Return error code
+
+	std::string res;
+	status = gpio_test.readValue(&res); //Set pin value
+	if (status != 0) return 1; //Return error code
+
+	if (res == "1") {
+		std::cout << "GPIO pin " << GPIO_PIN << " is HIGH\n";
+
+	}
+	else {
+		std::cout << "GPIO pin " << GPIO_PIN << " is LOW\n";
+	}
+
+	status = gpio_test.setupPin(0); //Disable pin
+	if (status != 0) return 1; //Return error code
+
+	return 0; //Return default code
+}
 ```
 
 <h4> License </h4>
