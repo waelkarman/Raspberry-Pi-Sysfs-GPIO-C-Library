@@ -19,7 +19,7 @@ int main() {
 	status = gpio_test.setupPin(1); //Create pin
 	if (status != 0) return 1; //Return error code
 
-	status = gpio_test.setDirection("out"); //Set pin direction
+	status = gpio_test.setDirection(1); //Set pin direction
 	if (status != 0) return 1; //Return error code
 
 	std::cout << "Wrote GPIO pin " << GPIO_PIN << " HIGH\n";

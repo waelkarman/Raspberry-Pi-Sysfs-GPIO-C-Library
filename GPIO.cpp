@@ -8,41 +8,6 @@
 //	writeValue	--	set the output voltage of the GPIO pin (1 for high, 0 for low)
 //	readValue	--	read the current value of the GPIO pin (sets input pointer *output to 1 for high or 0 for low)
 
-/* Example library usage:
-	int status; //Create a status variable
-
-	GPIO gpio_test("18"); //Create a GPIO object
-
-	status = gpio_test.setupPin(1); //Create pin
-	if (status != 0) return 1; //Return error code
-
-	status = gpio_test.setDirection("out"); //Set pin direction
-	if (status != 0) return 1; //Return error code
-
-	status = gpio_test.writeValue(1); //Set pin value
-	if (status != 0) return 1; //Return error code
-
-	//Or to read -----------------------------------------
-	status = gpio_test.setDirection("in"); //Set pin direction
-	if (status != 0) return 1; //Return error code
-
-	std::string res;
-	while (1) {
-		status = gpio_test.readValue(&res); //Set pin value
-		if (status != 0) return 1; //Return error code
-		if (res == "1") {
-			std::cout << res << "\n";
-		}
-		sleep(1);
-	}
-	// -----------------------------------------------------
-
-
-	status = gpio_test.setupPin(0); //Create pin
-	if (status != 0) return 1; //Return error code
-*/
-
-
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -55,8 +20,8 @@
 GPIO::GPIO(const char *pin) {
 //Run class setup
 	pin_num = pin;
-	_direction = "none";
-	_level = -1;
+	_direction = -1; //Direction not set
+	_level = -1; //Current pin level not set
 }
 
 int GPIO::setupPin(int create) { //Set create to true for creation or false to destroy pin
@@ -108,22 +73,22 @@ int GPIO::setupPin(int create) { //Set create to true for creation or false to d
 	return 0;
 }
 
-int GPIO::setDirection(const char *direction) {
+int GPIO::setDirection(int direction) {
 //Run setup for input/output (variable direction)
 	char pin_path[35]; //Path for pin
 	sprintf(pin_path, "/sys/class/gpio/gpio%s/direction", pin_num); //Format path
 	std::ofstream file(pin_path); //Open file
 	if (file.is_open()) { //Check that file opened
-		if (direction == "out") { //Check to make sure correct formatting
+		if (direction == 1) { //Check to make sure correct formatting
 			file << "out"; //Write
-			_direction = "out"; //Set class private variable to prevent write on read pin
+			_direction = 1; //Set _direction variable to prevent write on read pin
 		}
-		else if (direction == "in") {
-			file << "in";
-			_direction = "in"; //Set class private variable to prevent write on read pin
+		else if (direction == 0) {
+			file << 0;
+			_direction = 0; //Set _direction variable to prevent write on read pin
 		}
 		else {
-			std::cout << "ERR (GPIO.h:setDirection): Incorrect value for direction variable (must be either 'out' or 'in')\n";
+			std::cout << "ERR (GPIO.h:setDirection): Incorrect value for direction variable (must be either 1 for output or 0 of input)\n";
 			return 1;
 		}
 		file.close(); //Close
@@ -138,7 +103,7 @@ int GPIO::setDirection(const char *direction) {
 
 int GPIO::writeValue(int level) {
 //Set level of pin
-	if (_direction == "out") {
+	if (_direction == 1) { //Check that the direction of the pin is set as an output
 		char pin_path[35]; //Path for pin
 		sprintf(pin_path, "/sys/class/gpio/gpio%s/value", pin_num); //Format path
 		std::ofstream file(pin_path); //Open file
@@ -161,13 +126,13 @@ int GPIO::writeValue(int level) {
 		}
 	}
 	else {
-		std::cout << "ERR (GPIO.h:writeValue): Cannot write pin when direction is set as input (must be 'out' to write level)\n";
+		std::cout << "ERR (GPIO.h:writeValue): Cannot write pin when direction is set as input (direction must be 1 to write level)\n";
 	}
 	return 0;
 }
 
 int GPIO::readValue(std::string *level) {
-	if (_direction == "in") {
+	if (_direction == 0) { //Check that the direction of the pin is set as an input
 		char pin_path[35]; //Path for pin
 		sprintf(pin_path, "/sys/class/gpio/gpio%s/value", pin_num); //Format path
 		std::ifstream ifile(pin_path); //Open file
@@ -180,7 +145,7 @@ int GPIO::readValue(std::string *level) {
 		}
 	}
 	else {
-		std::cout << "ERR (GPIO.h:readValue): Cannot read pin when direction is set as output (must be 'in' to read level)\n";
+		std::cout << "ERR (GPIO.h:readValue): Cannot read pin when direction is set as output (direction must be 0 to read level)\n";
 	}
 	return 0;
 }
