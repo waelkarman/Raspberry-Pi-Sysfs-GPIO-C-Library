@@ -15,11 +15,11 @@ Run <strong>make</strong> to compile and install the GPIO library. To build the 
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; Runs setup for the pin that wasspecified when creating the GPIO object
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; <strong>create</strong> should be either 1 to enable/create the pin and 0 to disable/free the pin
 <br>
-<br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; setDirection(const char \*direction)
+<br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; setDirection(int direction)
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; Sets the pin direction (either as an input or an output).
-<br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; <strong>direction</strong> should be either "in" to create an input or "out" to create an output.
+<br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; <strong>direction</strong> should be either 0 to create an input or 1 to create an output.
 <br>
-<br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; readValue(std::string \*level)
+<br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; readValue(std::string *level)
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; Reads the current value of the pin. Note: readValue issues an error if the pin was set as an output with setDirection().
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; <strong>level</strong> should be a std::string variable. Run the function with readValue(&YOUR_OUTPUT_VARIABLE)
 <br>
