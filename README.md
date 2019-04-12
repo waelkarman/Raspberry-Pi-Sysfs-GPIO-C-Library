@@ -123,6 +123,6 @@ int main() {
 }
 ```
 
-<h4> License </h4>
+<h3> License </h3>
 All code and files are licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-4.0). Copyright (c) 2019, Alex Mous
 
