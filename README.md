@@ -10,7 +10,7 @@ Run <strong>make</strong> to compile and install the GPIO library. To build the 
 
 <br>
 <h3>Code Reference</h3>
-<br> &ensp;&ensp;&ensp;&ensp; <h4> Functions </h4>
+&ensp;&ensp;&ensp;&ensp; Functions
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; setupPin(int create)
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; Runs setup for the pin that wasspecified when creating the GPIO object
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; <strong>create</strong> should be either 1 to enable/create the pin and 0 to disable/free the pin
@@ -27,7 +27,6 @@ Run <strong>make</strong> to compile and install the GPIO library. To build the 
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; Writes a new voltage to the pin. Note: writeValue issues an error if the pin was set as an input with setDirection().
 <br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; <strong>level</strong> should either 1 for HIGH voltage level or 0 for LOW voltage level
 
-<br>
 <br>
 <h3> Example Code </h3>
 Both the uncompiled and compiled code will be in the Examples folder (run <strong> make examples </strong> to compile the examples).
@@ -125,5 +124,5 @@ int main() {
 ```
 
 <h4> License </h4>
-<br> All code and files are licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-4.0). Copyright (c) 2019, Alex Mous
+All code and files are licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-4.0). Copyright (c) 2019, Alex Mous
 
