@@ -5,9 +5,11 @@
 Requires string.h to run the readValue function
 
 <br>
-<h3> Compiling </h3>
+<h3> Installing </h3>
 Run <strong>make</strong> to compile and install the GPIO library. To build the example code, run <strong> make examples.</strong> Run <strong> make clean </strong> to uninstall the library and remove the compiled example code. Note: the make commands need to be run with root permissions. 
-
+<br>
+<h3> Compiling </h3>
+Once you have run <strong> make </strong> to install the GPIO library system-wide, just run <strong> g++ YOUR_FILE.cpp -o YOUR_FILE -lGPIO </strong> to compile YOUR_FILE.cpp into an executable.
 <br>
 <h3>Code Reference</h3>
 &ensp;&ensp;&ensp;&ensp; Functions
