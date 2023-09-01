@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#include "GPIO.h"
+#include "sysfsgpio.h"
 
 GPIO::GPIO(const char *pin) {
 //Run class setup
